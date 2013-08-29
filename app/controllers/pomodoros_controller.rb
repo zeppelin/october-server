@@ -9,7 +9,10 @@ class PomodorosController < ApplicationController
       title = github_issue_title(owner, repo, github_issue_id)
       issue = Issue.new(issue_params.merge(title: title))
     end
-    pomodoro = issue.pomodoros.build(pomodoro_params)
+
+    #TODO: params[:user_id] is here so that we can create pomodoros from the command line
+    user_id = pomodoro_params[:user_id] || current_user.id
+    pomodoro = issue.pomodoros.build(pomodoro_params.merge(user_id: user_id))
 
     if issue.save
       render json: {pomodoro: pomodoro}
@@ -27,7 +30,7 @@ class PomodorosController < ApplicationController
 
   private
     def pomodoro_params
-      params.require(:pomodoro).permit(:started_at, :completed_at, :cancelled_at)
+      params.require(:pomodoro).permit(:started_at, :completed_at, :cancelled_at, :user_id)
     end
 
     def issue_params
