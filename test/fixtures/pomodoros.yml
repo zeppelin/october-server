@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  started_at: 2013-08-29 11:44:57
+  completed_at: 2013-08-29 11:44:57
+  cancelled_at: 2013-08-29 11:44:57
+
+two:
+  started_at: 2013-08-29 11:44:57
+  completed_at: 2013-08-29 11:44:57
+  cancelled_at: 2013-08-29 11:44:57

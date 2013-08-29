@@ -13,6 +13,23 @@
 
 ActiveRecord::Schema.define(version: 20130829103612) do
 
+  create_table "issues", force: true do |t|
+    t.string   "owner"
+    t.string   "repo"
+    t.integer  "github_issue_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pomodoros", force: true do |t|
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.datetime "cancelled_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.integer  "uid"
     t.text     "name"
