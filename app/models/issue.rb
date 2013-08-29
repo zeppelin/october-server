@@ -1,3 +1,3 @@
 class Issue < ActiveRecord::Base
-  has_many :pomidoro
+  has_many :pomodoros
 end

@@ -1,15 +1,22 @@
-class PomidoroController < ApplicationController
+class PomodorosController < ApplicationController
 
   def create
     github_issue_id = issue_params[:github_issue_id]
     issue = Issue.where(github_issue_id: github_issue_id).first || Issue.new(issue_params)
-    pomodoro = issue.pomidoro.build(pomodoro_params)
+    pomodoro = issue.pomodoros.build(pomodoro_params)
 
     if issue.save
       render json: {pomodoro: pomodoro}
     else
       render action: 'new'
     end
+  end
+
+  def update
+    pomodoro = Pomodoro.find(params[:id])
+    pomodoro.update_attributes(pomodoro_params)
+    pomodoro.save!
+    render json: {pomodoro: pomodoro}
   end
 
   private
