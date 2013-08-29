@@ -6,7 +6,7 @@ class PomodorosController < ApplicationController
     repo = issue_params[:repo]
     issue = Issue.where(github_issue_id: github_issue_id, owner: owner, repo: repo).first
     unless issue
-      title = get_title_from_github(owner, repo, github_issue_id)
+      title = github_issue_title(owner, repo, github_issue_id)
       issue = Issue.new(issue_params.merge(title: title))
     end
     pomodoro = issue.pomodoros.build(pomodoro_params)
@@ -34,8 +34,9 @@ class PomodorosController < ApplicationController
       params.require(:pomodoro).require(:issue).permit(:owner, :repo, :github_issue_id)
     end
 
-    def get_title_from_github(owner, repo, github_issue_id)
-      
+    def github_issue_title(owner, repo, github_issue_id)
+      issue = api_get("/repos/#{owner}/#{repo}/issues/#{github_issue_id}")
+      issue.body.fetch("title")
     end
 
 end

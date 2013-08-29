@@ -7,6 +7,7 @@ gem 'rails', '4.0.0'
 gem 'sqlite3'
 gem 'omniauth-github'
 gem 'debugger', groups: 'development'
+gem 'faraday_middleware'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

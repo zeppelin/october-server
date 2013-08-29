@@ -11,5 +11,26 @@ class ApplicationController < ActionController::Base
   def current_user
     User.where(uid: session[:current_user_uid]).first
   end
+
+  def api_get(path)
+    github_api.get(path)
+  end
+
+  def github_api
+    @api ||= Faraday.new(url: api_base) do |conn|
+      conn.request  :multipart
+      conn.request  :url_encoded
+      conn.request  :json
+
+      conn.response :logger
+      conn.response :json
+
+      conn.adapter Faraday.default_adapter
+    end
+  end
+
+  def api_base
+    'https://api.github.com/'
+  end
 end
 
