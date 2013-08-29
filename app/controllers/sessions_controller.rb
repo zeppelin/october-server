@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     if user
       user.update_attributes(attributes)
     else
-      User.create(attributes.merge(uid: uid))
+      user = User.create(attributes.merge(uid: uid))
     end
     user
   end
