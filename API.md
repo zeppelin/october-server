@@ -2,21 +2,86 @@
 
 `POST /pomodoro`
 
-* owner
-* repo
-* issue_id
-* started_at
+```json
+{
+  "pomodoro": {
+    "started_at":"2013-08-19T14:29Z",
+    "issue": {
+      "owner": "ember.js",
+      "repo": "emberjs",
+      "github_issue_id": 1
+    }
+  }
+}
+```
 
+Response:
+
+```json
+{
+    "pomodoro": {
+        "id": 3,
+        "started_at": "2013-08-19T14:29:00.000Z",
+        "completed_at": null,
+        "cancelled_at": null,
+        "issue_id": 1,
+        "created_at": "2013-08-29T12:45:39.830Z",
+        "updated_at": "2013-08-29T12:45:39.830Z"
+    }
+}
+```
 ## Complete a pomodoro
 
-`PATCH /pomodoro`
+`PATCH /pomodoro/3`
 
-* id
-* completed_at
+```json
+{
+  "pomodoro": {
+    "completed_at":"2013-08-19T14:29Z"
+  }
+}
+```
+
+Response:
+
+```json
+{
+    "pomodoro": {
+        "id": 3,
+        "started_at": "2013-08-19T14:29:00.000Z",
+        "completed_at": "2013-08-19T14:29:00.000Z",
+        "cancelled_at": null,
+        "issue_id": 1,
+        "created_at": "2013-08-29T12:45:39.830Z",
+        "updated_at": "2013-08-29T12:46:11.812Z"
+    }
+}
+```
 
 ## Cancel a pomodoro
 
-`PATCH /pomodoro`
+`PATCH /pomodoro/4`
 
-* id
-* cancelled_at
+```json
+{
+  "pomodoro": {
+    "cancelled_at":"2013-08-19T14:29Z"
+  }
+}
+```
+
+Response:
+
+```json
+{
+    "pomodoro": {
+        "id": 5,
+        "started_at": "2013-08-19T14:29:00.000Z",
+        "completed_at": null,
+        "cancelled_at": "2013-08-19T14:29:00.000Z",
+        "issue_id": 1,
+        "created_at": "2013-08-29T12:47:19.836Z",
+        "updated_at": "2013-08-29T12:48:20.610Z"
+    }
+}
+```
