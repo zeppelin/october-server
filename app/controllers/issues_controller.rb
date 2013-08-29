@@ -4,7 +4,7 @@ class IssuesController < ApplicationController
  def index
    response = fetch_issues(params[:owner], params[:repo]).body
    issues = response.map do |issue|
-     { id: issue['id'], title: issue['title'], url: issue['url'], owner: params[:owner], repo: params[:repo] }
+     { id: issue['number'], title: issue['title'], url: issue['url'], owner: params[:owner], repo: params[:repo] }
    end
    respond_with(issues: issues)
  end
