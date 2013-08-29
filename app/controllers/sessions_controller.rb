@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
       nickname: user_info.nickname,
       email: user_info.email,
       image_url: user_info.image,
-      github_url: user_info.urls["GitHub"]
+      github_url: user_info.urls["GitHub"],
+      access_token: auth_hash.credentials.token
     }
 
     uid = auth_hash.uid

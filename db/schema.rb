@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829103612) do
+ActiveRecord::Schema.define(version: 20130829120602) do
 
   create_table "issues", force: true do |t|
     t.string   "owner"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20130829103612) do
     t.text     "github_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "access_token"
   end
 
 end
