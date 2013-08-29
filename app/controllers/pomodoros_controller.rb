@@ -29,17 +29,17 @@ class PomodorosController < ApplicationController
   end
 
   private
-    def pomodoro_params
-      params.require(:pomodoro).permit(:started_at, :completed_at, :cancelled_at, :user_id)
-    end
+  def pomodoro_params
+    params.require(:pomodoro).permit(:started_at, :completed_at, :cancelled_at, :user_id)
+  end
 
-    def issue_params
-      params.require(:pomodoro).require(:issue).permit(:owner, :repo, :github_issue_id)
-    end
+  def issue_params
+    params.require(:pomodoro).require(:issue).permit(:owner, :repo, :github_issue_id)
+  end
 
-    def github_issue_title(owner, repo, github_issue_id)
-      issue = api_get("/repos/#{owner}/#{repo}/issues/#{github_issue_id}")
-      issue.body.fetch("title")
-    end
+  def github_issue_title(owner, repo, github_issue_id)
+    issue = api_get("/repos/#{owner}/#{repo}/issues/#{github_issue_id}")
+    issue.body.fetch("title")
+  end
 
 end
