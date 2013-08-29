@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session
 
-  def client_app_url
-    'http://localhost:8000'
+  def client_app_url(uid)
+    "http://localhost:8000/#/token/#{uid}"
   end
 end
 

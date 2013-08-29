@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    update_user
-    redirect_to client_app_url
+    user = update_user
+    redirect_to client_app_url(user.uid)
   end
 
   private
@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
     else
       User.create(attributes.merge(uid: uid))
     end
+    user
   end
 
   def auth_hash
