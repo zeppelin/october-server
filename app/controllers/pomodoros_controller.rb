@@ -21,7 +21,7 @@ class PomodorosController < ApplicationController
 
   private
     def pomodoro_params
-      params.require(:pomodoro).permit(:started_at, :completed_at, :canceled_at)
+      params.require(:pomodoro).permit(:started_at, :completed_at, :cancelled_at)
     end
 
     def issue_params
