@@ -22,10 +22,11 @@ ActiveRecord::Schema.define(version: 20130829103612) do
     t.datetime "updated_at"
   end
 
-  create_table "pomodoros", force: true do |t|
+  create_table "pomidoro", force: true do |t|
     t.datetime "started_at"
     t.datetime "completed_at"
     t.datetime "cancelled_at"
+    t.integer  "issue_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
