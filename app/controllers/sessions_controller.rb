@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def create
     user = update_user
-    redirect_to client_app_url(user.uid)
+    session[:current_user_uid] = user.uid
+    redirect_to set_token_url
   end
 
   private
