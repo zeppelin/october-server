@@ -1,4 +1,5 @@
 class PomodorosController < ApplicationController
+  respond_to :json
 
   def create
     github_issue_id = issue_params[:github_issue_id]
@@ -26,6 +27,17 @@ class PomodorosController < ApplicationController
     pomodoro.update_attributes(pomodoro_params)
     pomodoro.save!
     render json: {pomodoro: pomodoro}
+  end
+
+  def show
+    pomodoro = Pomodoro.find(params[:id])
+    issue = pomodoro.issue
+    respond_with(pomodoro: {
+      id: pomodoro.id,
+      owner: issue.owner,
+      repo: issue.repo,
+      title: issue.title
+    })
   end
 
   private
