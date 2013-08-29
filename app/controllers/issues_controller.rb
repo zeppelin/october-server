@@ -1,18 +1,17 @@
 class IssuesController < ApplicationController
+  respond_to :json
 
  def index
-    # current_user = User.find(1)
-    owner = params[:owner]
-    repo = params[:repo]
-    issues = Issue.where(owner: owner, repo: repo)
+   response = fetch_issues(params[:owner], params[:repo]).body
+   issues = response.map do |issue|
+     { id: issue['id'], title: issue['title'], url: issue['url'] }
+   end
+   respond_with(issues: issues)
+ end
 
-    issues = issues.map do |i|
-      {
-        id: i.id,
-        title: i.title,
-        pomodoro_count: i.pomodoros.count
-      }
-    end
-    render json: {issues: issues}
+  private
+  def fetch_issues(owner, repo)
+    api_get("/repos/#{owner}/#{repo}/issues")
   end
+
 end
