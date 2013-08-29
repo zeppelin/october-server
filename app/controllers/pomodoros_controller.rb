@@ -2,7 +2,9 @@ class PomodorosController < ApplicationController
 
   def create
     github_issue_id = issue_params[:github_issue_id]
-    issue = Issue.where(github_issue_id: github_issue_id).first || Issue.new(issue_params)
+    owner = issue_params[:owner]
+    repo = issue_params[:repo]
+    issue = Issue.where(github_issue_id: github_issue_id, owner: owner, repo: repo).first || Issue.new(issue_params)
     pomodoro = issue.pomodoros.build(pomodoro_params)
 
     if issue.save
