@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def set_token_url
-    "http://localhost:8000/#/token/#{current_user.uid}"
+    "http://localhost:3000/#/token/#{current_user.uid}"
   end
 
   def current_user
