@@ -16,7 +16,7 @@ class PomodorosController < ApplicationController
     pomodoro = issue.pomodoros.build(pomodoro_params.merge(user_id: user_id))
 
     if issue.save
-      render json: {pomodoro: pomodoro}
+      render json: { pomodoro: pomodoro }
     else
       render action: 'new'
     end

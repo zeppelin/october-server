@@ -8,7 +8,6 @@ gem 'sqlite3'
 gem 'omniauth-github'
 gem 'debugger', groups: 'development'
 gem 'faraday_middleware'
-gem 'rack-cors', :require => 'rack/cors'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
